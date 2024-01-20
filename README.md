@@ -43,7 +43,7 @@ In case of facing problem, consider the following:
 **main.py** orchestrates the entire reinforcement learning process. It first initializes the JumpyGridWorld environment with specified parameters such as grid size, number of obstacles, and action size. Then, a Q-learning agent is instantiated. The training loop iterates through episodes, updating the Q-table based on the agent's actions and the environment's responses. Data such as rewards, steps per episode, grid layouts, and performance metrics are collected for visualization. The script concludes by deriving and printing the optimal policy based on the trained Q-values and showcasing various plots representing the training progress.
 
 ## Flowchart
-!(https://github.com/tanvirrsajal/AI1_Assignment/blob/master/JumpyGridWorld.pdf)
+![](https://github.com/tanvirrsajal/AI1_Assignment/blob/master/JumpyGridWorld.pdf)
 
 ## Plot Details:
 ### Steps per Episode:
