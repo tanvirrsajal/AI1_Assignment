@@ -1,4 +1,4 @@
-# globals.py
+# Globals.py
 
 # Declaring rewards and stepsPerEpisode as global variables
 rewards = []
