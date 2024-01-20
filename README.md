@@ -1,4 +1,5 @@
-# Project summary:
+# Jumpy Grid World using Q-learning in python
+## Project summary:
 This project implements a Q-learning algorithm for a Jumpy Grid World environment, where an agent navigates a grid layout with obstacles and a goal position. The agent can perform actions, including a unique jump action, and learns to optimize its path to maximize cumulative rewards. The code comprises modular components such as JumpyGridWorld, QLearningAgent, and Plotter. The training loop in main.py orchestrates the learning process, updating Q-values and collecting data for visualizations. Plots include steps per episode, rewards per episode, cumulative rewards, exploration decay, Q-values heatmap, and policy grade visualization. The implementation allows for easy parameter adjustments and presents opportunities for improvement, such as fine-tuning parameters, exploring different grid sizes, enhancing exploration strategies, refining visualizations, and considering parallelization for larger environments. Overall, the project provides a comprehensive exploration of Q-learning in a dynamic grid world setting with detailed visualizations for analysis and interpretation.
 
 ## Installation:
@@ -43,7 +44,7 @@ In case of facing problem, consider the following:
 **main.py** orchestrates the entire reinforcement learning process. It first initializes the JumpyGridWorld environment with specified parameters such as grid size, number of obstacles, and action size. Then, a Q-learning agent is instantiated. The training loop iterates through episodes, updating the Q-table based on the agent's actions and the environment's responses. Data such as rewards, steps per episode, grid layouts, and performance metrics are collected for visualization. The script concludes by deriving and printing the optimal policy based on the trained Q-values and showcasing various plots representing the training progress.
 
 ## Flowchart
-![]([https://github.com/tanvirrsajal/AI1_Assignment/blob/master/JumpyGridWorld.pdf](https://github.com/tanvirrsajal/AI1_Assignment/blob/master/JumpyGridWorld.jpg))
+![JumpyGridWorld Flowchart](https://github.com/tanvirrsajal/AI1_Assignment/blob/master/JumpyGridWorld.jpg)
 
 ## Plot Details:
 ### Steps per Episode:
