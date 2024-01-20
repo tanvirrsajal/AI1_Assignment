@@ -48,34 +48,29 @@ python3 main.py
 
 ## Plot Details:
 ### Steps per Episode:
-  **Objective:** Showcase the evolution of the number of steps taken by the agent in each episode.
-
-  **Interpretation:** A dwindling trend implies the agent's growing adeptness at navigating the environment efficiently.
+   - **Objective:** Showcase the evolution of the number of steps taken by the agent in each episode.
+   - **Interpretation:** A dwindling trend implies the agent's growing adeptness at navigating the environment efficiently.
 
 ### Rewards per Episode:
-  **Objective:** Illuminate the total reward garnered by the agent in each episode.
-
-  **Interpretation:** A rising trajectory signifies the agent's triumphant grasp of the optimal policy.
+   - **Objective:** Illuminate the total reward garnered by the agent in each episode.
+   - **Interpretation:** A rising trajectory signifies the agent's triumphant grasp of the optimal policy.
 
 ### Cumulative Reward per Episode Plot:
-  **Objective:** Visualize the cumulative sum of rewards obtained by the agent.
-
-  **Interpretation:** An upward slope indicates the agent consistently achieving higher cumulative rewards.
+   - **Objective:** Visualize the cumulative sum of rewards obtained by the agent.
+   - **Interpretation:** An upward slope indicates the agent consistently achieving higher cumulative rewards.
 
 ### Exploration Decay:
-  **Objective:** Depict the decline in exploration rate over episodes.
-
-  **Interpretation:** A gradual descent hints at the agent's transition from exploration to exploitation as it hones in on the optimal policy.
+   - **Objective:** Depict the decline in exploration rate over episodes.
+   - **Interpretation:** A gradual descent hints at the agent's transition from exploration to exploitation as it hones in on the optimal policy.
 
 ### Q-values Heatmap:
-  **Objective:** Illuminate the Q-values across the grid world, offering insights into the learned values for each state-action pair.
-
-  **Interpretation:** Brighter regions signify higher Q-values, reflecting the agent's learned preferences for certain actions in specific states.
+   - **Objective:** Illuminate the Q-values across the grid world, offering insights into the learned values for each state-action pair.
+   - **Interpretation:** Brighter regions signify higher Q-values, reflecting the agent's learned preferences for certain actions in specific states.
 
 ### Policy Grade Visualization:
-  **Objective:** Visualize the agent's policy by displaying the optimal action (arrow) for each grid cell.
+   - **Objective:** Visualize the agent's policy by displaying the optimal action (arrow) for each grid cell.
+   - **Interpretation:** Arrows indicate the agent's preferred actions at each location. A cohesive pattern of arrows unveils a learned policy for navigating the grid world.
 
-  **Interpretation:** Arrows indicate the agent's preferred actions at each location. A cohesive pattern of arrows unveils a learned policy for navigating the grid world.
 
 ## How it Works:
   - The agent explores the environment using an epsilon-greedy strategy, updating Q-values based on rewards and future Q-values.
