@@ -8,7 +8,8 @@
 pip install numpy matplotlib
 ```
 Make sure that all project files (main.py, JumpyGridWorld.py, etc.) are residing in the same directory.
-Running the Project:
+
+## Running the Project:
 To run the program, First clone the project and then execute the main.py script. Open terminal and run the following commands in the terminal.
 
 ```bash
