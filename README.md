@@ -36,7 +36,7 @@ python3 main.py
   **The QLearningAgent.py** script encapsulates the Q-learning agent's logic. The QLearningAgent class maintains a Q-table to store Q-values for each state-action pair. It features methods for selecting actions using an epsilon-greedy strategy, updating the Q-table based on rewards and future Q-values, and deriving the optimal policy. The agent's learning rate, discount factor, and exploration rate are adjustable parameters.
 
 ### Plotter.py:
-  **Plotter.py** focuses on visualization functions to aid in understanding the Q-learning agent's behavior. The module utilizes Matplotlib to create heatmaps for Q-values and policy grades, with functions like visualizeQValuesOnAxes and visualizePolicyGradeOnAxes. The updatePlots function dynamically updates plots during training, showcasing the progression of rewards, steps per episode, Q-values, and policy grades.
+  **Plotter.py** focuses on visualization functions to aid in understanding the Q-learning agent's behavior. The module utilizes Matplotlib to create heatmaps for Q-values and policy grades, with functions like visualizePath, visualizeQValuesOnAxes and visualizePolicyGradeOnAxes. The updatePlots function dynamically updates plots during training, showcasing the progression of rewards, steps per episode, Q-values, optimal path and policy grades.
 
 ### Globals.py:
   **Globals.py** serves as a simple utility file, declaring global variables rewards and stepsPerEpisode. These variables store cumulative rewards and steps per episode throughout the training process. By making them global, different parts of the project can easily access and update this shared data.
@@ -60,9 +60,9 @@ python3 main.py
    - **Objective:** Visualize the cumulative sum of rewards obtained by the agent.
    - **Interpretation:** An upward slope indicates the agent consistently achieving higher cumulative rewards.
 
-### Exploration Decay:
-   - **Objective:** Depict the decline in exploration rate over episodes.
-   - **Interpretation:** A gradual descent hints at the agent's transition from exploration to exploitation as it hones in on the optimal policy.
+### Agents Trajectory Path:
+   - **Objective:** Visualize the agent's trajectory path, on a grid world to illustrate its movement during episodes.
+   - **Interpretation:** The plotted line with markers represents the sequential trajectory of the agent, providing a spatial understanding of its navigation within the grid world.
 
 ### Q-values Heatmap:
    - **Objective:** Illuminate the Q-values across the grid world, offering insights into the learned values for each state-action pair.
@@ -81,7 +81,7 @@ python3 main.py
   - Results, optimal solution, and optimal policy are printed.
 
 ## Result
-  The agent successfully learns to navigate the grid world and reach the goal state. The visualizations demonstrate the agent's improved performance over time. The Q-values heatmap shows that the agent learns to prioritize paths with higher expected rewards. The policy grade visualization shows that the agent becomes more confident in its chosen actions. The steps per episode plot shows a decrease in steps as the agent learns, indicating more efficient navigation. The rewards per episode plot shows an increase in reward as the agent learns, indicating better reward maximization. The cumulative rewards plot shows a consistent increase in reward throughout the training process.
+  The agent successfully learns to navigate the grid world and reach the goal state. The visualizations demonstrate the agent's improved performance over time. The Q-values heatmap shows that the agent learns to prioritize paths with higher expected rewards. The policy grade visualization shows that the agent becomes more confident in its chosen actions. The steps per episode plot shows a decrease in steps as the agent learns, indicating more efficient navigation. The rewards per episode plot shows an increase in reward as the agent learns, indicating better reward maximization. The cumulative rewards plot shows a consistent increase in reward throughout the training process. We also show the agents path which is the optimal path as well.
 
 ## Conclusion
   This project successfully demonstrates the application of reinforcement learning to solve a navigation task. The Q-learning algorithm enabled the agent to learn from its experiences and make optimal decisions in a dynamic environment. 
