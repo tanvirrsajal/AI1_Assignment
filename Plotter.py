@@ -16,6 +16,20 @@ def actionToArrow(action):
     }
     return mapping.get(action, '?')  # Return '?' if action is not in the mapping
 
+def visualizePath(size, path, ax):
+    # Visualize the agent's trajectory path
+    ax.clear()
+    ax.set_title(r'$\bf{Agent\'s\ Trajectory\ Path}$', fontsize=14)
+    ax.set_xlabel('Grid Width')
+    ax.set_ylabel('Grid Height')
+    ax.set_xticks(np.arange(size+1))  # Add +1 to include the edge for better visualization
+    ax.set_yticks(np.arange(size+1))  # Add +1 to include the edge for better visualization
+    ax.grid(which='both', color='black', linestyle='-', linewidth=2)
+
+    path_x, path_y = zip(*path)
+    ax.plot(np.array(path_y)+0.5, np.array(path_x)+0.5, marker='o', linestyle='-', color='blue')  # Add +0.5 to center the markers in the cells
+    ax.invert_yaxis()  # Invert y-axis to match the visualization of the grade
+
 
 def visualizeQValuesOnAxes(qValues, ax):
     # Visualizing Q-values as a heatmap
@@ -37,11 +51,11 @@ def visualizePolicyGradeOnAxes(qValues, ax):
     policy = np.argmax(qValues, axis=2)
 
     actionValues = {
-    0: 0.25,  # Up
-    1: 0.50,  # Down
-    2: 0.75,  # Left
-    3: 1.0,   # Right
-    4: 0.0    # Jump
+        0: 0.25,  # Up
+        1: 0.50,  # Down
+        2: 0.75,  # Left
+        3: 1.0,   # Right
+        4: 0.0    # Jump
     }
 
     policyValues = np.vectorize(actionValues.get, otypes=[float])(policy)
@@ -55,7 +69,7 @@ def visualizePolicyGradeOnAxes(qValues, ax):
     sm.set_array([])
 
     cbar = plt.colorbar(sm, ax=ax, ticks=[0.0, 0.25, 0.50, 0.75, 1.0])
-    cbar.ax.set_yticklabels(['Jump' , 'Up', 'Down', 'Left', 'Right'])  # Text labels
+    cbar.ax.set_yticklabels(['Jump', 'Up', 'Down', 'Left', 'Right'])  # Text labels
 
     for i, row in enumerate(policy):
         for j, action in enumerate(row):
@@ -68,14 +82,14 @@ def visualizePolicyGradeOnAxes(qValues, ax):
     ax.tick_params(axis=u'both', which=u'both', length=0)
     ax.set_title('Policy Grade Visualization\n')
 
-
-def updatePlots(episode, agent, ax1, ax2, ax3, ax4, ax5, ax6):
+def updatePlots(episode, agent, ax1, ax2, ax3, ax4, ax5, ax6, env, episodePath):
     global rewards, stepsPerEpisode  # Global variables
     if episode == agent.numEpisodes - 1:  # For showing plots only at the end of training
         visualizeQValuesOnAxes(agent.qTable, ax5)
-        visualizePolicyGradeOnAxes(agent.qTable, ax6)
-        ax4.set_title(r'$\bf{Q-values\ Heatmap}$', fontsize=14)
-        ax5.set_title(r'$\bf{Policy\ Grade\ Visualization}$', fontsize=14)
+        visualizePolicyGradeOnAxes(agent.qTable, ax4)
+        ax4.set_title(r'$\bf{Policy\ Grade\ Visualization}$', fontsize=14)
+        ax5.set_title(r'$\bf{Q-values\ Heatmap}$', fontsize=14)
+        ax6.set_title(r'$\bf{Agent\'s\ Trajectory\ Path}$', fontsize=14)
 
 
         # Plotting steps per episode
@@ -97,11 +111,8 @@ def updatePlots(episode, agent, ax1, ax2, ax3, ax4, ax5, ax6):
         ax3.set_ylabel('Cumulative Reward')
         ax3.set_title(r'$\bf{Cumulative\ Reward\ per\ Episode}$', fontsize=14)
 
-        # Plotting Exploration Decay
-        ax4.plot(range(episode + 1), agent.explorationRate * np.exp(-0.01 * np.arange(episode + 1)), color='red')
-        ax4.set_xlabel('Episode')
-        ax4.set_ylabel('Exploration Rate')
-        ax4.set_title(r'$\bf{Exploration\ Decay}$', fontsize=14)
+        # Visualize the agent's trajectory path
+        visualizePath(env.size, episodePath, ax6)
 
         # Adding some space between the rows and columns of plots
         plt.subplots_adjust(hspace=0.4, wspace=0.3)
