@@ -3,11 +3,13 @@ import numpy as np
 
 class JumpyGridWorld:
     def __init__(self, size, numObstacles):
+        # Initialize the grid world
         self.size = size
         self.state = np.zeros((size, size))
         self.startPosition = (0, 0)
         self.goalPosition = (size - 1, size - 1)
         self.obstacles = set()
+        self.agentPath = []  # Store the agent's path during an episode
 
         # Randomly place obstacles
         for _ in range(numObstacles):
@@ -15,24 +17,25 @@ class JumpyGridWorld:
             self.obstacles.add(obstaclePosition)
 
     def reset(self):
-        # Reseting the environment and return the starting position
+        # Reset the environment and return the starting position
         self.state = np.zeros((self.size, self.size))
+        self.agentPath = []  # Clear the agent's path
         return self.startPosition
 
     def isValidPosition(self, position):
-        # Checking if a position is valid within the grid
+        # Check if a position is valid within the grid
         return 0 <= position[0] < self.size and 0 <= position[1] < self.size
 
     def isObstacle(self, position):
-        # Checking if a position is an obstacle
+        # Check if a position is an obstacle
         return position in self.obstacles
 
     def isTerminal(self, position):
-        # Checking if a position is the goal state
+        # Check if a position is the goal state
         return position == self.goalPosition
 
     def performAction(self, position, action):
-        # Performing the specified action and return the new position and reward
+        # Perform the specified action and return the new position and reward
         if action == 0:  # Up
             newPosition = (position[0] - 1, position[1])
         elif action == 1:  # Down
@@ -48,11 +51,12 @@ class JumpyGridWorld:
         if self.isValidPosition(newPosition) and not self.isObstacle(newPosition):
             position = newPosition
 
-        # Updating the state to mark the current position
         self.state = np.zeros((self.size, self.size))
-        self.state[position] = 1  # Marking the current position in the state
+        self.state[position] = 1
 
-        # Defining the reward based on the current state or other factors
         reward = -1 if not self.isTerminal(position) else 10
+
+        # Add the current position to the agent's path
+        self.agentPath.append(position)
 
         return position, reward
