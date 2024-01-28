@@ -9,6 +9,7 @@ class QLearningAgent:
         self.discountFactor = discountFactor  # Discount factor for future rewards
         self.explorationRate = explorationRate  # Exploration rate for epsilon-greedy strategy
         self.actionSize = actionSize  # Number of possible actions
+        self.episodePath = []  # Store the agent's path during an episode
 
     def selectAction(self, state):
         # Implementing action selection logic using epsilon-greedy strategy
@@ -19,13 +20,19 @@ class QLearningAgent:
 
     def updateQTable(self, state, action, reward, nextState):
         # Implementing Q-table update logic using the Q-learning update rule
-        currentQValue = self.qTable[state + (action,)]
+        currentQValues = self.qTable[state]
         maxNextQValue = np.max(self.qTable[nextState])
 
-        newQValue = (1 - self.learningRate) * currentQValue + \
-                      self.learningRate * (reward + self.discountFactor * maxNextQValue)
+        newQValues = currentQValues.copy()
 
-        self.qTable[state + (action,)] = newQValue
+        newQValues[action] = (1 - self.learningRate) * currentQValues[action] + \
+                             self.learningRate * (reward + self.discountFactor * maxNextQValue)
+
+        self.qTable[state] = newQValues
+
+    def resetEpisodePath(self):
+        # Reset the agent's episode path
+        self.episodePath = []
 
     def getOptimalPolicy(self, obstacles):
         # Deriving optimal policy based on Q-values
